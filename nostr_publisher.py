@@ -237,6 +237,7 @@ class _WebSocketConnection:
         self._socket.settimeout(timeout)
         if self._is_tls:
             context = ssl.create_default_context()
+            context.minimum_version = ssl.TLSVersion.TLSv1_2
             self._socket = context.wrap_socket(self._socket, server_hostname=self._host)
 
         path = parsed.path or "/"
